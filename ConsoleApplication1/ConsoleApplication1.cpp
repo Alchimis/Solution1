@@ -81,9 +81,6 @@ bool getKAndM(std::ifstream& str, size_t& k, size_t& m)
 int main()
 {
 	auto inFile = OpenFile<std::ifstream>("in.txt");
-	/*if (inFile == NULL)
-	{
-	}*/
 	auto outFile = OpenFile<std::ofstream>("out.txt");
 	size_t k = 0;
 	size_t m = 0;
@@ -94,8 +91,10 @@ int main()
 	char buf = ' ';
 	size_t stateNum = 0;
 	
-	if (getKAndM(inFile.value(), k, m))
+	if (!getKAndM(inFile.value(), k, m))
 	{
+		return 1;
+	}
 		for (size_t i = 0; i < k; i++)
 		{
 			std::vector<SState> perehody;
@@ -148,8 +147,7 @@ int main()
 			outFile.value() << std::endl;
 		}
 		return 0;
-	}
-	return 1;
+
 
 }
 
