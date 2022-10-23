@@ -1,0 +1,6 @@
+Y1 g1 - g2 
+Y2 g1 - g2 
+Y1 g5 g4 - 
+Y2 g5 g0 g2 
+Y3 g5 g0 g2 
+Y3 - - g3 
