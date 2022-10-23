@@ -19,7 +19,7 @@ struct SState
 	size_t Y;
 	Status status = Status::good;
 	friend bool operator==(const SState& lhs, const SState& rhs);
-	bool operator<(const SState& other) const {// 0 0 0 1
+	bool operator<(const SState& other) const {
 		if (other.status > status)
 		{
 			return true;
@@ -53,8 +53,6 @@ std::optional<T> OpenFile(const std::string& name)
 
 bool getKAndM(std::ifstream& str, size_t& k, size_t& m) 
 {
-	/*std::regex reg("^[ ]*([0-9]*)[ ]*([0-9]*)[ ]*$");
-	std::cmatch cm;*/
 	try
 	{
 		int _k;
@@ -78,15 +76,6 @@ bool getKAndM(std::ifstream& str, size_t& k, size_t& m)
 	}
 	str.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	return true;
-}
-
-bool windTheThread(std::ifstream& str, std::set<SState>& setOfStates, size_t k, size_t m)
-{
-	//std::regex reg("");
-	for (size_t i = 0; i < k; i++)
-	{
-	}
-	return false;
 }
 
 int main()
@@ -168,6 +157,7 @@ inline bool operator==(const SState& lhs, const SState& rhs)
 {
 	return (lhs.S == rhs.S) && (lhs.Y == rhs.Y) && (lhs.status == rhs.status);
 }
+
 inline std::ifstream& operator>>(std::ifstream& in, SState& state)
 {
 	std::cmatch cm;
@@ -202,10 +192,6 @@ inline std::ifstream& operator>>(std::ifstream& in, SState& state)
 	}
 	in >> buf;
 	std::cout << buf << std::endl;
-	/*if (std::regex_match(buf.c_str(), cm, reg2))
-	{
-		state.status = Status::empty;
-	}*/
 	std::regex reg1("[Yy]([0-9]+[,]?)");
 	size_t y = 0;
 	if (std::regex_match(buf.c_str(), cm, reg1))
